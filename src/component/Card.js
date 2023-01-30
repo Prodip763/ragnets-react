@@ -16,24 +16,13 @@ const Card = ({ data }) => {
                 <div className="card-body items-center text-center">
                     <h2 className="card-title">{title}</h2>
                     <p>{category}</p>
-                    <p>Price: {price}</p>
+                    <p>Price: {price}$</p>
 
                     <div className="card-actions">
                         <button onClick={() => productDetails(id)} className="btn btn-primary">Add to cart</button>
                     </div>
                 </div>
             </div>
-
-
-            {/* <div className="card lg:card-side bg-base-100 shadow-xl top-6">
-                <figure></figure>
-                <div className="card-body">
-                    <h2 className="card-title"></h2>
-                    <p></p>
-                    <div className="card-actions justify-end">
-                    </div>
-                </div>
-            </div> */}
         </div>
     );
 };

@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const Items = () => {
     const { itemId } = useParams();
@@ -14,19 +17,27 @@ const Items = () => {
 
     }, [item, itemId])
     const [num, setNum] = useState(0);
+    const handleItem = () => {
+        toast('Product added successfully')
+    }
     return (
         <div>
-            <div className="card lg:card-side bg-base-100 shadow-xl ">
-                <figure><img src={item.image} /></figure>
+            <div className="card lg:card-side bg-base-100 shadow-xl mt-2 ">
+                <figure><img src={item.image} className="w-80" /></figure>
                 <div className="card-body">
                     <h2 className="card-title">{item.title}</h2>
                     <p><small>{item.description}</small></p>
-                    <p>Price: <span className='font-bold'>{item.price}</span> </p>
+                    <p>Price: <span className='font-bold'>{item.price}$</span> </p>
                     <p>Rating: <span className='font-bold'>{item.rating?.rate}</span> </p>
                     <div className="flex gap-3">
-                        <button onClick={() => { setNum(num + 1) }} className="btn">+</button>
-                        <h2 className='text-2xl'><span className='font-bold'>{num}</span></h2>
                         <button onClick={() => { setNum(num > 0 ? num - 1 : 0) }} className="btn">-</button>
+                        <h2 className='text-2xl'><span className='font-bold'>{num}</span></h2>
+                        <button onClick={() => { setNum(num + 1) }} className="btn">+</button>
+
+                    </div>
+                    <div className="card-actions">
+                        <button onClick={() => handleItem()} className="btn btn-primary">Add Product</button>
+                        <ToastContainer />
                     </div>
                 </div>
             </div>
