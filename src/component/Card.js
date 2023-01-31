@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 const Card = ({ data }) => {
     const { title, id, price, category, image, rating } = data;
+    
     const navigate = useNavigate();
     const productDetails = id => {
         navigate(`/item/${id}`)
@@ -20,6 +21,9 @@ const Card = ({ data }) => {
 
                     <div className="card-actions">
                         <button onClick={() => productDetails(id)} className="btn btn-primary">Add to cart</button>
+                    </div>
+                    <div className="card-actions">
+                        <button onClick={() => productDetails(id)} className="btn btn-primary">Remove Cart</button>
                     </div>
                 </div>
             </div>

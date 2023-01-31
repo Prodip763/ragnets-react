@@ -1,12 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useReducer, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useProducts } from '../context/ProductProvider';
+import { actionType } from '../state/actionType';
 
 
 const Items = () => {
+    const { dispatch} = useProducts()
+
     const { itemId } = useParams();
-    console.log("item", itemId);
     const [item, setItem] = useState({});
 
     useEffect(() => {
@@ -17,9 +20,9 @@ const Items = () => {
 
     }, [item, itemId])
     const [num, setNum] = useState(0);
-    const handleItem = () => {
-        toast('Product added successfully')
-    }
+    // const handleItem = () => {
+    //     toast('Product added successfully')
+    // }
     return (
         <div>
             <div className="card lg:card-side bg-base-100 shadow-xl mt-2 ">
@@ -36,7 +39,7 @@ const Items = () => {
 
                     </div>
                     <div className="card-actions">
-                        <button onClick={() => handleItem()} className="btn btn-primary">Add Product</button>
+                        <button onClick={() =>dispatch({type: actionType.ADD_TO_CART, payload: item })} className="btn btn-primary">Add Product</button>
                         <ToastContainer />
                     </div>
                 </div>
