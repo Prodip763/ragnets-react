@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const Card = ({ data }) => {
+const Card = ({ data, pathname}) => {
     const { title, id, price, category, image, rating } = data;
     
     const navigate = useNavigate();
@@ -20,10 +20,20 @@ const Card = ({ data }) => {
                     <p>Price: {price}$</p>
 
                     <div className="card-actions">
-                        <button onClick={() => productDetails(id)} className="btn btn-primary">Add to cart</button>
+                        {
+                            !pathname.includes("cart") && (
+                                <button onClick={() => productDetails(id)} className="btn btn-primary">Add to cart</button>
+
+                            )
+                        }
                     </div>
                     <div className="card-actions">
-                        <button onClick={() => productDetails(id)} className="btn btn-primary">Remove Cart</button>
+                        {
+                            pathname.includes("cart") && (
+                                <button onClick={() => productDetails(id)} className="btn btn-primary">Remove Cart</button>
+
+                            )
+                        }
                     </div>
                 </div>
             </div>

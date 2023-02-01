@@ -6,12 +6,11 @@ import Cart from "./component/Cart";
 import ProductProvider from "./context/ProductProvider";
 
 
-
 function App() {
   return (
     <div>
       <ProductProvider> 
-      <Home></Home>
+        <Home></Home>
         <Routes>
           <Route path="/" element={<Product></Product>}></Route>
           <Route path="/product" element={<Product></Product>}></Route>

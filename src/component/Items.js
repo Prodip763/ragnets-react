@@ -20,9 +20,12 @@ const Items = () => {
 
     }, [item, itemId])
     const [num, setNum] = useState(0);
-    // const handleItem = () => {
-    //     toast('Product added successfully')
-    // }
+    const handleItem = () => {
+        dispatch({type: actionType.ADD_TO_CART, payload: item, num });
+        toast('Product added successfully');
+    }
+
+
     return (
         <div>
             <div className="card lg:card-side bg-base-100 shadow-xl mt-2 ">
@@ -39,7 +42,7 @@ const Items = () => {
 
                     </div>
                     <div className="card-actions">
-                        <button onClick={() =>dispatch({type: actionType.ADD_TO_CART, payload: item })} className="btn btn-primary">Add Product</button>
+                        <button onClick={() =>handleItem()} className="btn btn-primary">Add Product</button>
                         <ToastContainer />
                     </div>
                 </div>

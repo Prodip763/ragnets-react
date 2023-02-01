@@ -1,14 +1,13 @@
-import React, { useState } from 'react';
-import Items from './Items';
+import React from 'react';
+import { useProducts } from '../context/ProductProvider';
+import { actionType } from '../state/actionType';
 
-const RemoveCard = ({ data }) => {
+const RemoveCard = ({ data}) => {
     const { title, price, category, image} = data;
-    const [remove, setRemove] = useState(data);
-    const removrToCart = (id) =>{
-        setRemove((current) =>
-        current.filter((data) => data.id !== id)
-      );
-    }
+    const { state: { product}, dispatch} = useProducts();
+
+
+
     return (
         <div>
         <div className="card w-auto h-80 bg-base-100 shadow-xl mt-2">
@@ -20,7 +19,7 @@ const RemoveCard = ({ data }) => {
                 <p>{category}</p>
                 <p>Price: {price}$</p>
                 <div className="card-actions">
-                    <button onClick={() => removrToCart(data.id)} className="btn btn-primary">Remove Cart</button>
+                    <button onClick={() =>dispatch({type: actionType.REMOVE_TO_CART, payload: product})} className="btn btn-primary">Remove Cart</button>
                 </div>
             </div>
         </div>
